@@ -1,0 +1,4 @@
+export const SUPPORTED=['es','en'];const FALLBACK='es';
+export let cur=localStorage.getItem('mw_lang')||(navigator.language||'es').split('-')[0];if(!SUPPORTED.includes(cur))cur=FALLBACK;let dict={};
+export async function loadLocale(l){const r=await fetch(`./locales/${l}.json`);dict=await r.json();cur=l;localStorage.setItem('mw_lang',l);document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=dict[el.getAttribute('data-i18n')]||el.textContent});}
+export function initI18nUI(){const sel=document.getElementById('langSelect');sel.innerHTML=SUPPORTED.map(l=>`<option value='${l}'>${l.toUpperCase()}</option>`).join('');sel.value=cur;sel.onchange=()=>loadLocale(sel.value);return loadLocale(cur);}export function t(k){return dict[k]||k;} export function getLang(){return cur;}

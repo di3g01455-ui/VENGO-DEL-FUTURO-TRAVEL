@@ -1,0 +1,72 @@
+
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title data-i18n="app.title">MapWorld PRO v3.1 (IA+GPS)</title>
+<link rel="stylesheet" href="./assets/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+</head><body>
+<header class="header">
+  <div class="row"><strong>MapWorld PRO v3.1</strong><span class="badge">IA + GPS + Clima + Hoteles</span></div>
+  <div class="row">
+    <div class="searchbar" style="position:relative;min-width:260px">
+      <input id="searchBox" class="input" placeholder="🔎 " data-i18n="search.placeholder">
+      <div id="suggestions" class="suggestions" style="display:none"></div>
+    </div>
+    <select id="langSelect" class="input"></select>
+    <select id="inCurrency" class="input"><option value="USD" data-i18n="currency.usd">USD</option><option value="EUR" data-i18n="currency.eur">EUR</option></select>
+  </div>
+</header>
+<main class="container">
+  <section class="card">
+    <div class="card-header">
+      <div class="row">
+        <label><span data-i18n="input.checkin">Entrada</span>: <input id="checkIn" class="input" type="date"></label>
+        <label><span data-i18n="input.nights">Noches</span>: <input id="nights" class="input" type="number" min="1" value="5" style="width:100px"></label>
+        <div id="nearby" class="badge" style="display:inline-block"></div>
+      </div>
+      <small data-i18n="map.hint">Toca cualquier país en el mapa</small>
+    </div>
+    <div class="card-body" style="padding:0;position:relative">
+      <div id="map"></div><div id="mapLabel" class="map-label" style="display:none">—</div>
+    </div>
+    <div class="card-body">
+      <div class="tabs">
+        <div id="tab-tourism" class="tab" data-i18n="tab.tourism">Turismo</div>
+        <div id="tab-hotels" class="tab" data-i18n="tab.hotels">Hoteles</div>
+        <div id="tab-facts" class="tab" data-i18n="tab.facts">Curiosidades</div>
+        <div id="tab-climate" class="tab" data-i18n="tab.climate">Clima</div>
+      </div>
+      <div id="pane-tourism" class="pane"><div id="tourism"></div></div>
+      <div id="pane-hotels" class="pane">
+        <div class="city-row"><label><span data-i18n="hotels.city">Ciudad (opcional)</span>
+          <input id="city" class="input" placeholder="p.ej. Barcelona"></label></div>
+        <h3 data-i18n="summary.hotels">Hoteles con ofertas</h3><div id="hotels" class="linklist"></div>
+        <h3 data-i18n="summary.morehotels">Más hoteles</h3><div id="moreHotels" class="linklist"></div>
+      </div>
+      <div id="pane-facts" class="pane"><div id="facts"></div></div>
+      <div id="pane-climate" class="pane"><div id="climateBox"></div></div>
+    </div>
+  </section>
+  <aside class="card">
+    <div class="card-header">
+      <div class="row">
+        <img id="flag" class="flag" alt="Bandera">
+        <strong id="countryName" data-i18n="panel.country">País</strong>
+        <span class="badge"><span data-i18n="panel.capital">Capital</span>: <span id="capital">—</span></span>
+        <span class="badge"><span data-i18n="panel.region">Región</span>: <span id="region">—</span></span>
+      </div>
+    </div>
+  </aside>
+</main>
+<button id="ai-fab">🤖 IA</button>
+<div id="ai-panel">
+  <div id="ai-header"><strong data-i18n="ai.title">Asistente IA</strong><small data-i18n="ai.hint">Pregunta sobre visados, itinerarios…</small></div>
+  <div id="ai-stream" class="scroll"><div class="msg ai" data-i18n="ai.start">¿En qué país estás pensando?</div></div>
+  <div id="ai-input"><input id="ai-text" class="input" placeholder="Ej.: dame un itinerario de 4 días"><button id="ai-send" class="button" data-i18n="ai.send">Enviar</button></div>
+</div>
+<footer class="footer">© 2025 MapWorld — <a href="./privacy.html">Privacidad</a> · <a href="./terms.html">Términos</a></footer>
+<script type="module" src="./js/i18n.js"></script>
+<script type="module" src="./js/cities.js"></script>
+<script type="module" src="./js/app.js" defer></script>
+</body></html>
